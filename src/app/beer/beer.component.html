@@ -1,0 +1,44 @@
+<div class="beer" *ngIf="beer" >
+  <div class="product-breadcroumb">
+    <a href="category">{{beer.category.name}}</a>
+    <a href="/beer/{{beer.id}}"> {{beer.name}} </a>
+  </div>
+
+  <div class="content">
+    <div class="image inline" >
+      <img src="{{ '/assets/beer-picture/default-beer.png'}}">
+    </div>
+
+    <div class="inform inline">
+      <div class="text">
+        <strong>Name:</strong>
+        <label for="">{{beer.name}}</label>
+      </div>
+
+      <div class="text">
+        <strong>Manufacturer: </strong>
+        <label for="">{{beer.manufacurter}}</label>
+      </div>
+
+      <div class="text">
+        <strong>Category:</strong>
+        <label for="text">{{beer['category']['name']}}</label>
+      </div>
+
+      <div class="text">
+        <strong>Country:</strong>
+        <label for="">{{beer.country}}</label>
+      </div>
+
+      <div class="text">
+        <strong>Price:</strong>
+        <ins>${{beer.price}}</ins>
+      </div>
+
+      <div class="text">
+        <strong>Description:</strong>
+        <label for="">{{beer.description}}</label>
+      </div>
+    </div>
+  </div>
+</div>
