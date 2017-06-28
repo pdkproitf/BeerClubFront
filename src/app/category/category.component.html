@@ -1,0 +1,22 @@
+
+<button [hidden]="!user" class="button-create" (click)="showDialog(true)" type="button">Create Category</button>
+<p-accordion [multiple]="true">
+  <p-accordionTab *ngFor="let category of categories" header="{{category.name}} ({{category.beers.length}})">
+    <div *ngFor="let beer of category.beers">
+      <app-beer [beer]="beer" ></app-beer>
+    </div>
+  </p-accordionTab>
+</p-accordion>
+
+<p-growl [value]="msgs" [life]="3000" ></p-growl>
+
+<p-dialog header="Create Category" [(visible)]="dialogVisible" [resizable]="false">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <input type="text" #Variable focus placeholder="Category Name">
+    </div>
+
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <button type="button" pButton icon="fa-check" (click)="createCategory(Variable.value)">Create</button>
+      <button type="button" pButton icon="fa-close" (click)="showDialog(false)">Cancle</button>
+    </div>
+</p-dialog>

@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'Beer Club';
 
   constructor(private router: Router){
-    this.router.navigate(['maketing-page'])
+    this.router.navigate(['category'])
   }
 
 }
