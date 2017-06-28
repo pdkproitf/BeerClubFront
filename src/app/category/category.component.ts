@@ -2,6 +2,7 @@ import { Component, OnInit }  from '@angular/core';
 import { CategoryService }    from '../services/category-service';
 import { Category }           from '../models/category';
 import { Message }            from 'primeng/primeng';
+import { Router }         from '@angular/router';
 import { Beer }           from '../models/beer';
 import { User }           from '../models/user';
 
@@ -13,16 +14,19 @@ import { User }           from '../models/user';
 export class CategoryComponent implements OnInit {
 
   categories: Category[] = [];
+  _categories: Category[] = [];
   dialogVisible: boolean = false;
   user: User;
   msgs: Message[] = [];
+  searchCategoryParten: string = '';
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit() {
     this.categoryService.getCategories().then(
       res => {
         this.categories = res['data'];
+        this._categories = this.categories;
         console.log('categories', this.categories)
       },
       error => {
@@ -41,6 +45,10 @@ export class CategoryComponent implements OnInit {
     this.dialogVisible = show;
   }
 
+  showBeer(id: number){
+    this.router.navigate(['beer', id])
+  }
+
   createCategory(name: string){
     let category = {
       category:{
@@ -56,6 +64,16 @@ export class CategoryComponent implements OnInit {
         this.noticeMessage(JSON.parse(error['_body']).error);
       }
     )
+  }
+
+  searchCategory(name: string){
+    this._categories = [];
+    for (let category of this.categories) {
+      if ((category.name.toUpperCase().indexOf(this.searchCategoryParten.toUpperCase()) > -1) ||
+      (category.name.toLowerCase() .indexOf(this.searchCategoryParten.toLowerCase()) > -1)) {
+        this._categories.push(category);
+      }
+    }
   }
 
   noticeMessage(content: string, status: number = 1){

@@ -12,6 +12,7 @@ import { AccordionModule,
          GrowlModule}     from 'primeng/primeng';
 import { NotLoggedIn }            from './services/not-logged-in';
 import { UserService }            from './services/user-service';
+import { BeerService }            from './services/beer-service';
 import { AuthenLoggedIn }         from './services/authen-logged-in';
 import { CategoryService }        from './services/category-service';
 import { CategoryComponent }      from './category/category.component';
@@ -41,7 +42,7 @@ import { BeerComponent } from './beer/beer.component';
     DialogModule,
     GrowlModule
   ],
-  providers: [AuthenLoggedIn, NotLoggedIn, UserService, CategoryService],
+  providers: [AuthenLoggedIn, NotLoggedIn, UserService, CategoryService, BeerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
