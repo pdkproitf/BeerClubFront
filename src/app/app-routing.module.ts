@@ -8,6 +8,7 @@ import { SignUpComponent }      from './sign-up/sign-up.component';
 import { CategoryComponent } from './category/category.component';
 import { BeerComponent }    from './beer/beer.component';
 import { MaketingPageComponent } from './maketing-page/maketing-page.component';
+import { PassportsComponent } from './passports/passports.component';
 
 const routes: Routes = [
     { path: 'sign-in/:role', component: SignInComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: 'maketing-page', component: MaketingPageComponent},
     { path: '', component: CategoryComponent },
     { path: 'beer/:id', component: BeerComponent },
-    { path: 'beer', component: BeerComponent, canActivate: [AuthenLoggedIn] }
+    { path: 'beer', component: BeerComponent, canActivate: [AuthenLoggedIn] },
+    { path: 'passports', component: PassportsComponent, canActivate: [AuthenLoggedIn] }
 ];
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],
