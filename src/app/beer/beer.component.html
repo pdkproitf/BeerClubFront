@@ -1,44 +1,65 @@
 <div class="beer" *ngIf="beer" >
   <div class="product-breadcroumb">
-    <a href="#">{{beer.category.name}}</a>
+    <a href="#" *ngIf="beer.category">{{beer.category.name}}</a>
     <a href="/beer/{{beer.id}}"> {{beer.name}} </a>
   </div>
 
   <div class="content">
     <div class="image inline" >
-      <img src="{{ '/assets/beer-picture/default-beer.png'}}">
+      <img src="{{'/assets/beer-picture/default-beer.png'}}">
     </div>
 
     <div class="inform inline">
+      <div class="control-inform" *ngIf="user && !isCreate">
+        <div class="oval" (click)="archive(beer.id)">
+          <div class="text"><i class="fa fa-{{ beer.archived? 'undo' : 'archive'}}" aria-hidden="true"></i></div>
+        </div>
+
+        <div class="oval" (click)="edit()">
+          <div class="text"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+        </div>
+      </div>
+
       <div class="text">
         <strong>Name:</strong>
-        <label for="">{{beer.name}}</label>
+        <input [ngClass]="inputClass" pInputText type="text" class="form-control" [(ngModel)]="beer.name" name="name" disabled="{{!isEdit}}" required>
       </div>
 
       <div class="text">
         <strong>Manufacturer: </strong>
-        <label for="">{{beer.manufacurter}}</label>
+        <input [ngClass]="inputClass" pInputText type="text" class="form-control" [(ngModel)]="beer.manufacurter" name="mamnufacurte" disabled="{{!isEdit}}" required>
       </div>
 
       <div class="text">
         <strong>Category:</strong>
-        <label for="text">{{beer['category']['name']}}</label>
+        <div class="drop-down">
+          <select class="form-control" [(ngModel)]="category_selected" name="category" disabled="{{!isEdit}}" required>
+            <option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
+          </select>
+        </div>
       </div>
 
       <div class="text">
         <strong>Country:</strong>
-        <label for="">{{beer.country}}</label>
+        <input [ngClass]="inputClass" pInputText type="text" class="form-control" [(ngModel)]="beer.country" name="cpuntry" disabled="{{!isEdit}}" required>
       </div>
 
       <div class="text">
         <strong>Price:</strong>
-        <ins>${{beer.price}}</ins>
+        $<input [ngClass]="inputClass" pInputText type="number" class="form-control" [(ngModel)]="beer.price" name="price" disabled="{{!isEdit}}" required>
       </div>
 
       <div class="text">
         <strong>Description:</strong>
-        <label for="">{{beer.description}}</label>
+        <textarea [ngClass]="inputClass" pInputText type="text" class="form-control" [(ngModel)]="beer.description" name="description" disabled="{{!isEdit}}" required></textarea>
       </div>
+
+      <div class="form-button" *ngIf="isEdit">
+        <button class="submit" type="submit" (click)="save()">{{ isCreate? 'Create' : 'Update' }}</button>
+        <button class="cancel" type="button" (click)="cancel()">Cancel</button>
+      </div>
+
     </div>
   </div>
 </div>
+<p-growl [value]="msgs"></p-growl>

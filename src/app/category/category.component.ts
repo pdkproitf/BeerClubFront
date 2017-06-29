@@ -1,6 +1,6 @@
+import { Category, CategoryPost }     from '../models/category';
 import { Component, OnInit }  from '@angular/core';
 import { CategoryService }    from '../services/category-service';
-import { Category }           from '../models/category';
 import { Message }            from 'primeng/primeng';
 import { Router }         from '@angular/router';
 import { Beer }           from '../models/beer';
@@ -19,6 +19,7 @@ export class CategoryComponent implements OnInit {
   user: User;
   msgs: Message[] = [];
   searchCategoryParten: string = '';
+  category: Category;
 
   constructor(private categoryService: CategoryService, private router: Router) { }
 
@@ -33,10 +34,11 @@ export class CategoryComponent implements OnInit {
         console.log('error', error);
       }
     )
+    this.getUser();
   }
 
   getUser(){
-    let userInfo = localStorage.getItem('UserInfo');
+    let userInfo = localStorage.getItem('user');
     let userObj = JSON.parse(userInfo);
     this.user = userObj;
   }
@@ -50,15 +52,11 @@ export class CategoryComponent implements OnInit {
   }
 
   createCategory(name: string){
-    let category = {
-      category:{
-        name: name
-      }
-    }
-    this.categoryService.createCategory(category).then(
+    this.categoryService.createCategory(this.getCategoryPost(name)).then(
       (result) => {
         this.categories.push(result);
         this.noticeMessage('Success!', 0);
+        this.showDialog(false);
       },
       (error) => {
         this.noticeMessage(JSON.parse(error['_body']).error);
@@ -76,12 +74,36 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-  save(id: number){
+  save(id: number, name: string){
+    this.categoryService.updateCategory(id, this.getCategoryPost(name)).then(
+      (result) => {
+        this.categories.push(result);
+        this.noticeMessage('Success!', 0);
+      },
+      (error) => {
+        this.noticeMessage(JSON.parse(error['_body']).error);
+      }
+    )
+  }
 
+  getCategoryPost(name: string){
+    var category = new Category();
+    category.name = name;
+    var categoryPost = new CategoryPost();
+    categoryPost.category = category;
+    return categoryPost;
   }
 
   delete(id: number){
-
+    this.categoryService.deleteCategory(id).then(
+      (res) => {
+        this.noticeMessage('Success!', 0);
+        this.categories.splice(this.categories.findIndex(x => x.id == id), 1);
+      },
+      (error) =>{
+        this.noticeMessage(JSON.parse(error['_body']).error);
+      }
+    )
   }
 
   noticeMessage(content: string, status: number = 1){
