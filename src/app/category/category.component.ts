@@ -95,7 +95,15 @@ export class CategoryComponent implements OnInit {
   }
 
   delete(id: number){
-
+    this.categoryService.deleteCategory(id).then(
+      (res) => {
+        this.noticeMessage('Success!', 0);
+        this.categories.splice(this.categories.findIndex(x => x.id == id), 1);
+      },
+      (error) =>{
+        this.noticeMessage(JSON.parse(error['_body']).error);
+      }
+    )
   }
 
   noticeMessage(content: string, status: number = 1){

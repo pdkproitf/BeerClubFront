@@ -55,4 +55,15 @@ export class CategoryService {
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});
   }
+
+  deleteCategory(id: number): Promise<any> {
+    let requestUrl = this.serverdomain.domain + '/categories/' + id;
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
+    return this.http
+      .delete(requestUrl, {headers: headers})
+      .toPromise()
+      .then(res => { return res.json().data;})
+      .catch(error => { return this.handleError(error);});
+  }
 }
