@@ -65,4 +65,15 @@ export class BeerService {
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});
   }
+
+  addBeer(beerPost: Object): Promise<any> {
+    let requestUrl = this.serverdomain.domain + '/beers';
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
+    return this.http
+      .post(requestUrl, JSON.stringify(beerPost), {headers: headers})
+      .toPromise()
+      .then(res => { return res.json().data;})
+      .catch(error => { return this.handleError(error);});
+  }
 }

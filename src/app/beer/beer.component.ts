@@ -20,16 +20,34 @@ export class BeerComponent implements OnInit, OnChanges {
   msgs: Message[] = [];
   //  true -> edit mode, false -> show mode
   isEdit: boolean = false;
+  //  true -> create mode, false -> show mode
+  isCreate: boolean = false;
   // input class to show input field
   inputClass = '';
   // category for drop-down
   category_selected: number;
   categories: Category[] = [];
 
-  constructor(private route: ActivatedRoute, private beerService: BeerService, private categoryService: CategoryService) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private beerService: BeerService,
+    private categoryService: CategoryService) { }
 
   ngOnInit() {
     var id = this.route.snapshot.params['id'];
+
+    id? this.getBeer(id) : this.createBeer();
+
+    this.getUser();
+    this.getCategories();
+  }
+
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}){
+    if(changes['beer']) this.ngOnInit();
+  }
+
+  getBeer(id: number){
     this.beerService.getBeer(id).then(
       (res) => {
         this.beer = res['data'];
@@ -39,12 +57,23 @@ export class BeerComponent implements OnInit, OnChanges {
         console.log('error', error)
       }
     )
-    this.getUser();
-    this.getCategories();
   }
 
-  ngOnChanges(changes: {[propKey: string]: SimpleChange}){
-    if(changes['beer']) this.ngOnInit();
+  ////
+  //@function createBeer
+  //@desc init field to Create a New Beer
+  //@param
+  //@result
+  ////
+  createBeer(){
+    this.beer = new Beer();
+    this.beer.name = '';
+    this.beer.manufacurter = '';
+    this.beer.category_id = 0;
+    this.beer.country = '';
+    this.beer.price = 0;
+    this.edit();
+    this.isCreate = true;
   }
 
   getUser(){
@@ -53,6 +82,13 @@ export class BeerComponent implements OnInit, OnChanges {
     this.user = userObj;
   }
 
+
+  ////
+  //@function archive
+  //@desc archive a beer or unarchive beer
+  //@param id- > beer_id
+  //@result
+  ////
   archive(id: number){
     if(this.beer.archived){
       this.beerService.unarchiveBeer(id).then(
@@ -77,7 +113,12 @@ export class BeerComponent implements OnInit, OnChanges {
     }
   }
 
-
+  ////
+  //@function getCategories
+  //@desc get categories from service to show when edit a beer
+  //@param
+  //@result
+  ////
   getCategories(){
     this.categoryService.getCategories().then(
       res => {
@@ -89,16 +130,36 @@ export class BeerComponent implements OnInit, OnChanges {
     )
   }
 
-  update(){
-    this.beerService.updateBeer(this.beer.id, this.getBeerPost()).then(
-      (res) => {
-        this.noticeMessage('Update success', 0);
-        this.cancel();
-      },
-      (error) => {
-        this.noticeMessage(JSON.parse(error['_body']).error);
-      }
-    )
+  ////
+  //@function save
+  //@desc update or create beer
+  //@param
+  //@result
+  ////
+  save(){
+    // create abeer
+    if(this.isCreate){
+      this.beerService.addBeer(this.getBeerPost()).then(
+        (res) => {
+          this.noticeMessage('Create success', 0);
+          this.redirectToBoard();
+        },
+        (error) => {
+          this.noticeMessage(JSON.parse(error['_body']).error);
+        }
+      )
+    }else{
+      // update abeer
+      this.beerService.updateBeer(this.beer.id, this.getBeerPost()).then(
+        (res) => {
+          this.noticeMessage('Update success', 0);
+          this.cancel();
+        },
+        (error) => {
+          this.noticeMessage(JSON.parse(error['_body']).error);
+        }
+      )
+    }
   }
 
   getBeerPost(){
@@ -116,6 +177,10 @@ export class BeerComponent implements OnInit, OnChanges {
   cancel(){
     this.isEdit = false;
     this.inputClass = '';
+  }
+
+  redirectToBoard(){
+    this.router.navigate(['']);
   }
 
   noticeMessage(content: string, status: number = 1){

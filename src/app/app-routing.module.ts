@@ -14,7 +14,8 @@ const routes: Routes = [
     { path: 'sign-up/:role', component: SignUpComponent},
     { path: 'maketing-page', component: MaketingPageComponent},
     { path: '', component: CategoryComponent },
-    { path: 'beer/:id', component: BeerComponent }
+    { path: 'beer/:id', component: BeerComponent },
+    { path: 'beer', component: BeerComponent, canActivate: [AuthenLoggedIn] }
 ];
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],

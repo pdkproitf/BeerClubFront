@@ -15,7 +15,7 @@ export class AuthenLoggedIn implements CanActivate {
         return true;
       }
       this.userService.redirectUrl = url;
-      this.router.navigate(['/sign-in']);
+      this.router.navigate(['/sign-in', 'admin']);
       return false;
     }
 
