@@ -3,7 +3,7 @@
     <div class="job-content">
       <div class="header">
         <div class="search-group">
-          <span class="fa fa-search imgspan"></span>
+          <span class="fa fa-search"></span>
           <input class="search-text" type="text" [(ngModel)]="searchCategoryParten" (keyup)="searchCategory()" placeholder="Search Category's name"/>
         </div>
 
@@ -14,12 +14,12 @@
         <div class="header">
           <input type="text" #aVariable value="{{category.name}}">
           <div class="control" id="job-{{category.id}}" [hidden]="!user" >
-            <div class="oval" (click)="save(category, aVariable.value)">
+            <div class="oval" (click)="save(category.id)">
               <div class="text">
                 <i class="fa fa-fw fa-refresh" aria-hidden="true"></i>
               </div>
             </div>
-            <div class="oval" (click)="delete(category)">
+            <div class="oval" (click)="delete(category.id)">
               <div class="text">
                 <i class="fa fa-fw fa-trash" aria-hidden="true"></i>
               </div>

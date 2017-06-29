@@ -15,7 +15,8 @@ export class AppComponent {
       if (event instanceof NavigationEnd) {
         let currentUser = JSON.parse(localStorage.getItem('UserInfo'));
         event.url.includes('sign-in')
-        event.url.includes('category')
+        event.url.includes('sign-up')
+        event.url.includes('')
         event.url.includes('beer')
       }
     })

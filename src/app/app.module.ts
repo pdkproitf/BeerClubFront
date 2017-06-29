@@ -9,7 +9,7 @@ import { SignInComponent }  from './sign-in/sign-in.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AccordionModule,
          DialogModule,
-         GrowlModule}     from 'primeng/primeng';
+         GrowlModule}       from 'primeng/primeng';
 import { NotLoggedIn }            from './services/not-logged-in';
 import { UserService }            from './services/user-service';
 import { BeerService }            from './services/beer-service';
@@ -20,7 +20,7 @@ import { MaketingPageComponent }  from './maketing-page/maketing-page.component'
 import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
 import { MenubarComponent } from './menubar/menubar.component';
 import { BeerComponent } from './beer/beer.component';
-
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { BeerComponent } from './beer/beer.component';
     CategoryComponent,
     MenubarComponent,
     BeerComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
