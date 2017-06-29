@@ -28,10 +28,10 @@ export class CategoryService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-    .get(requestUrl, {headers: headers})
-    .toPromise()
-    .then(res => res.json())
-    .catch(error => this.handleError(error));
+      .get(requestUrl, {headers: headers})
+      .toPromise()
+      .then(res => res.json())
+      .catch(error => this.handleError(error));
   }
 
   createCategory(categoryPost: Object): Promise<any> {
@@ -39,14 +39,10 @@ export class CategoryService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-    .post(requestUrl, JSON.stringify(categoryPost), {headers: headers})
-    .toPromise()
-    .then(res => {
-      return res.json().data;
-    })
-    .catch(error => {
-      return this.handleError(error);
-    });
+      .post(requestUrl, JSON.stringify(categoryPost), {headers: headers})
+      .toPromise()
+      .then(res => { return res.json().data;})
+      .catch(error => { return this.handleError(error);});
   }
 
   updateCategory(id: number, categoryPost: Object): Promise<any> {
@@ -54,13 +50,9 @@ export class CategoryService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-    .put(requestUrl, JSON.stringify(categoryPost), {headers: headers})
-    .toPromise()
-    .then(res => {
-      return res.json().data;
-    })
-    .catch(error => {
-      return this.handleError(error);
-    });
+      .put(requestUrl, JSON.stringify(categoryPost), {headers: headers})
+      .toPromise()
+      .then(res => { return res.json().data;})
+      .catch(error => { return this.handleError(error);});
   }
 }

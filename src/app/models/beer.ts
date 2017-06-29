@@ -7,4 +7,9 @@ export class Beer{
   description: string;
   archived: boolean;
   count: number;
+  category_id: number;
+}
+
+export class BeerPost{
+  beer: Beer;
 }

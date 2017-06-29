@@ -27,25 +27,21 @@ export class BeerService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-    .get(requestUrl, {headers: headers})
-    .toPromise()
-    .then(res => res.json())
-    .catch(error => this.handleError(error));
+        .get(requestUrl, {headers: headers})
+        .toPromise()
+        .then(res => res.json())
+        .catch(error => this.handleError(error));
   }
 
   archiveBeer(id: number){
     let requestUrl = this.serverdomain.domain + '/beers/' + id + '/archive';
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
-    return this.http
-    .put(requestUrl, {}, {headers: headers})
-    .toPromise()
-    .then(res => {
-      return res.json().data;
-    })
-    .catch(error => {
-      return this.handleError(error);
-    });
+      return this.http
+      .put(requestUrl, {}, {headers: headers})
+      .toPromise()
+      .then(res => { return res.json().data;})
+      .catch(error => { return this.handleError(error);});
   }
 
   unarchiveBeer(id: number){
@@ -53,13 +49,20 @@ export class BeerService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-    .put(requestUrl, {}, {headers: headers})
-    .toPromise()
-    .then(res => {
-      return res.json().data;
-    })
-    .catch(error => {
-      return this.handleError(error);
-    });
+      .put(requestUrl, {}, {headers: headers})
+      .toPromise()
+      .then(res => { return res.json().data;})
+      .catch(error => { return this.handleError(error);});
+  }
+
+  updateBeer(id: number, beerPost: Object): Promise<any> {
+    let requestUrl = this.serverdomain.domain + '/beers/' + id;
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
+    return this.http
+      .put(requestUrl, JSON.stringify(beerPost), {headers: headers})
+      .toPromise()
+      .then(res => { return res.json().data;})
+      .catch(error => { return this.handleError(error);});
   }
 }
