@@ -46,4 +46,19 @@ export class CategoryService {
       return this.handleError(error);
     });
   }
+
+  updateCategory(id: number, categoryPost: Object): Promise<any> {
+    let requestUrl = this.serverdomain.domain + '/categories/' + id;
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
+    return this.http
+    .put(requestUrl, JSON.stringify(categoryPost), {headers: headers})
+    .toPromise()
+    .then(res => {
+      return res.json().data;
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
 }

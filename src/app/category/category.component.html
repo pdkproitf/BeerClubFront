@@ -14,7 +14,7 @@
         <div class="header">
           <input type="text" #aVariable value="{{category.name}}">
           <div class="control" id="job-{{category.id}}" [hidden]="!user" >
-            <div class="oval" (click)="save(category.id)">
+            <div class="oval" (click)="save(category.id, aVariable.value)">
               <div class="text">
                 <i class="fa fa-fw fa-refresh" aria-hidden="true"></i>
               </div>

@@ -5,3 +5,7 @@ export class Category {
     archived: boolean;
     beers: Beer[]
 }
+
+export class CategoryPost {
+    category: Category;
+}
