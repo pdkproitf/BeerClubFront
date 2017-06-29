@@ -33,10 +33,11 @@ export class CategoryComponent implements OnInit {
         console.log('error', error);
       }
     )
+    this.getUser();
   }
 
   getUser(){
-    let userInfo = localStorage.getItem('UserInfo');
+    let userInfo = localStorage.getItem('user');
     let userObj = JSON.parse(userInfo);
     this.user = userObj;
   }

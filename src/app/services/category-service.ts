@@ -14,10 +14,10 @@ export class CategoryService {
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
-    let userInfo = localStorage.getItem('UserInfo');
+    let userInfo = localStorage.getItem('user');
     if (error.status === 401 && userInfo != null) {
       alert('Your token is expired');
-      localStorage.removeItem('UserInfo');
+      localStorage.removeItem('user');
       this.router.navigate(['sign-in']);
     }
     return Promise.reject(error.message || error);

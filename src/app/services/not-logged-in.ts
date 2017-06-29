@@ -11,9 +11,9 @@ export class NotLoggedIn implements CanActivate{
     }
 
     checkLogin(url: string): boolean {
-    if (!this.userService.isLoggedIn()) {
-      return true;
-    }
+    // if (!this.userService.isLoggedIn()) {
+    //   return true;
+    // }
     this.userService.redirectUrl = url;
     this.router.navigate(['/']);
     return false;

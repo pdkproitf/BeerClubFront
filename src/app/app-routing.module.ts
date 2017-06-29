@@ -10,11 +10,11 @@ import { BeerComponent }    from './beer/beer.component';
 import { MaketingPageComponent } from './maketing-page/maketing-page.component';
 
 const routes: Routes = [
-    { path: 'sign-in/:role', component: SignInComponent, canActivate: [NotLoggedIn] },
-    { path: 'sign-up/:role', component: SignUpComponent, canActivate: [NotLoggedIn] },
-    { path: 'maketing-page', component: MaketingPageComponent, canActivate: [NotLoggedIn] },
-    { path: '', component: CategoryComponent, canActivate: [NotLoggedIn] },
-    { path: 'beer/:id', component: BeerComponent, canActivate: [NotLoggedIn] }
+    { path: 'sign-in/:role', component: SignInComponent },
+    { path: 'sign-up/:role', component: SignUpComponent},
+    { path: 'maketing-page', component: MaketingPageComponent},
+    { path: '', component: CategoryComponent },
+    { path: 'beer/:id', component: BeerComponent }
 ];
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],

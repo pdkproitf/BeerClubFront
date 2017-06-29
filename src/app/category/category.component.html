@@ -7,7 +7,7 @@
           <input class="search-text" type="text" [(ngModel)]="searchCategoryParten" (keyup)="searchCategory()" placeholder="Search Category's name"/>
         </div>
 
-        <button class="button-create" (click)="showDialog(true)" type="button">Create Category</button>
+        <button [hidden]="!user" class="button-create" (click)="showDialog(true)" type="button">Create Category</button>
       </div>
 
       <div *ngFor="let category of _categories; let i = index;" class="job" >
@@ -52,3 +52,5 @@
       <button type="button" pButton icon="fa-close" (click)="showDialog(false)">Cancle</button>
     </div>
 </p-dialog>
+
+<p-growl [value]="msgs"></p-growl>
