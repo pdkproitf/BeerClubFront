@@ -7,11 +7,13 @@
   </div>
 
   <div class="beers">
-    <p-tabView (onChange)="onTabChange($event)">
-      <p-tabPanel header="All">
+    <p-tabView (onChange)="onTabChange($event.index)">
+      <p-tabPanel header="All - {{beers.length}}">
         <div class="job-members">
           <ul class="users-list">
             <li *ngFor="let beer of _beers">
+            <button *ngIf="isAdd(beer.id)" pButton type="button" (click)="removeFromPassport(beer.id)" icon="fa-minus-circle"></button>
+            <button *ngIf="!isAdd(beer.id)" pButton type="button" (click)="addToPassport(beer.id)" icon="fa-plus-circle"></button>
               <span *ngIf="beer" (click)="showBeer(beer.id)">
                 <img src="{{ '/assets/beer-picture/default-beer.png'}}">
                 <a class="users-list-name" href="#">{{beer.name}}</a>
@@ -21,9 +23,10 @@
         </div>
      </p-tabPanel>
 
-      <p-tabPanel header="Drank">
+      <p-tabPanel header="Drank - {{beers.length - beers_new.length}}">
          <ul class="users-list" >
-            <li *ngFor="let beer _beers">
+            <li *ngFor="let beer of _beers">
+              <button pButton type="button" (click)="removeFromPassport(beer.id)" icon="fa-minus-circle"></button>
               <span *ngIf="beer" (click)="showBeer(beer.id)">
                 <img src="{{ '/assets/beer-picture/default-beer.png'}}">
                 <a class="users-list-name" href="#">{{beer.name}}</a>
@@ -32,9 +35,10 @@
           </ul>
       </p-tabPanel>
 
-      <p-tabPanel header="New">
+      <p-tabPanel header="New - {{beers_new.length}}">
           <ul class="users-list">
             <li *ngFor="let beer of _beers">
+              <button pButton type="button" (click)="addToPassport(beer.id)" icon="fa-plus-circle"></button>
               <span *ngIf="beer" (click)="showBeer(beer.id)">
                 <img src="{{ '/assets/beer-picture/default-beer.png'}}">
                 <a class="users-list-name" href="#">{{beer.name}}</a>

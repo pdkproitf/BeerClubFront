@@ -51,15 +51,23 @@
       padding: 0;
       max-height: 500px;
       >li{
-        max-width: 150px;
+        width: 200px;
         max-height: 200px;
         display: inline-block;
         padding: 10px;
         text-align: center;
-        cursor: pointer;
+         cursor: pointer;
+         border: 9px;
+        border-color: #DDE1E5;
+        border-radius: 25px;
+        margin-left: 1em;
+         border: 1px solid #ddd;
+         button{
+          float: right;
+         }
         img{
           border-radius: 50%;
-          max-width: 100%;
+          width: 80px;
           height: auto;
         }
         .users-list-name{

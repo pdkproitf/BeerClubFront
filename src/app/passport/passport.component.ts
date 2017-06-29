@@ -15,14 +15,14 @@ import { Beer }                from '../models/beer';
 export class PassportComponent implements OnInit {
 
   msgs: Message[] = [];
-  passport: Passport;
+  passport: Passport = new Passport();
   user: User;
   // constraint all beer is available on system
-  beers: Beer[];
+  beers: Beer[] = [];
   // constraint beer which new with passport
-  beers_new: Beer[];
+  beers_new: Beer[] = [];
   // current beers to show
-  _beers: Beer[];
+  _beers: Beer[] = [];
   // current tab
   tab: number = 0;
   // search parten
@@ -56,7 +56,6 @@ export class PassportComponent implements OnInit {
     this.beerService.getBeers().then(
       (res) => {
         this.beers = res['data'];
-        this._beers = this.beers;
         this.getBeersNew(this.beers, this.passport.beers);
       },
       (error) => {
@@ -74,6 +73,43 @@ export class PassportComponent implements OnInit {
         this.beers_new.push(beer);
       }
     }
+    this.onTabChange(this.tab);
+  }
+
+  addToPassport(id: number){
+    var data = {
+      passport_id: this.passport.id,
+      beer_id: id
+    }
+    this.passportService.addToPassport(data).then(
+      (res) => {
+        this.noticeMessage('Success', 0);
+        this.updateBeerList();
+      },
+      (error) => {
+        this.noticeMessage(JSON.parse(error['_body']).error);
+      }
+    )
+  }
+
+  removeFromPassport(id: number){
+    var data = {
+      passport_id: this.passport.id,
+      beer_id: id
+    }
+    this.passportService.removeFromPassport(data).then(
+      (res) => {
+        this.noticeMessage('Success', 0);
+        this.updateBeerList();
+      },
+      (error) => {
+        this.noticeMessage(JSON.parse(error['_body']).error);
+      }
+    )
+  }
+
+  updateBeerList(){
+    this.ngOnInit();
   }
 
   getUser(){
@@ -86,10 +122,10 @@ export class PassportComponent implements OnInit {
     this.router.navigate(['beer', id])
   }
 
-  onTabChange(event) {
+  onTabChange(index) {
     this.searchBeerParten = '';
-    this.tab = event.index;
-
+    this.tab = index;
+    console.log('index', index);
     switch(this.tab){
       case 0: {
         this._beers = this.beers;
@@ -105,6 +141,11 @@ export class PassportComponent implements OnInit {
       }
     }
   }
+
+// check beer already on passport or not.
+isAdd(id: number){
+  return (this.passport.beers.findIndex(x => x.id == id) != -1)
+}
 
   search(){
     var beers = this.currentBeerShow();
