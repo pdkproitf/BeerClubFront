@@ -34,15 +34,15 @@ export class PassportService {
       .catch(error => this.handleError(error));
   }
 
-  createCategory(categoryPost: Object): Promise<any> {
-    let requestUrl = this.serverdomain.domain + '/categories';
+  getPassport(id: number): Promise<any> {
+    let requestUrl = new ServerDomain().domain + '/passports/' + id;
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-      .post(requestUrl, JSON.stringify(categoryPost), {headers: headers})
+      .get(requestUrl, {headers: headers})
       .toPromise()
-      .then(res => { return res.json().data;})
-      .catch(error => { return this.handleError(error);});
+      .then(res => res.json())
+      .catch(error => this.handleError(error));
   }
 
   updateCategory(id: number, categoryPost: Object): Promise<any> {
@@ -56,14 +56,4 @@ export class PassportService {
       .catch(error => { return this.handleError(error);});
   }
 
-  deleteCategory(id: number): Promise<any> {
-    let requestUrl = this.serverdomain.domain + '/categories/' + id;
-    let headers = new Headers();
-    this.headersService.createAuthHeaders(headers);
-    return this.http
-      .delete(requestUrl, {headers: headers})
-      .toPromise()
-      .then(res => { return res.json().data;})
-      .catch(error => { return this.handleError(error);});
-  }
 }

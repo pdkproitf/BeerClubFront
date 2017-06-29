@@ -33,6 +33,17 @@ export class BeerService {
         .catch(error => this.handleError(error));
   }
 
+  getBeers(): Promise<any> {
+    let requestUrl = new ServerDomain().domain + '/beers';
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
+    return this.http
+        .get(requestUrl, {headers: headers})
+        .toPromise()
+        .then(res => res.json())
+        .catch(error => this.handleError(error));
+  }
+
   archiveBeer(id: number){
     let requestUrl = this.serverdomain.domain + '/beers/' + id + '/archive';
     let headers = new Headers();

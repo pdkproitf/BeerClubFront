@@ -1,0 +1,48 @@
+<div class="content">
+  <p>Passport</p>
+
+  <div class="search-group">
+      <span class="fa fa-search"></span>
+      <input class="search-text" type="text" [(ngModel)]="searchBeerParten" (keyup)="search()" placeholder="Search Beer's name"/>
+  </div>
+
+  <div class="beers">
+    <p-tabView (onChange)="onTabChange($event)">
+      <p-tabPanel header="All">
+        <div class="job-members">
+          <ul class="users-list">
+            <li *ngFor="let beer of _beers">
+              <span *ngIf="beer" (click)="showBeer(beer.id)">
+                <img src="{{ '/assets/beer-picture/default-beer.png'}}">
+                <a class="users-list-name" href="#">{{beer.name}}</a>
+              </span>
+            </li>
+          </ul>
+        </div>
+     </p-tabPanel>
+
+      <p-tabPanel header="Drank">
+         <ul class="users-list" >
+            <li *ngFor="let beer _beers">
+              <span *ngIf="beer" (click)="showBeer(beer.id)">
+                <img src="{{ '/assets/beer-picture/default-beer.png'}}">
+                <a class="users-list-name" href="#">{{beer.name}}</a>
+              </span>
+            </li>
+          </ul>
+      </p-tabPanel>
+
+      <p-tabPanel header="New">
+          <ul class="users-list">
+            <li *ngFor="let beer of _beers">
+              <span *ngIf="beer" (click)="showBeer(beer.id)">
+                <img src="{{ '/assets/beer-picture/default-beer.png'}}">
+                <a class="users-list-name" href="#">{{beer.name}}</a>
+              </span>
+            </li>
+          </ul>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>
+<p-growl [value]="msgs"></p-growl>
