@@ -19,28 +19,30 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     let para = this.route.params['_value'];
-    this.mode = para['role'] === 'admin'
-    console.log(para, para['role']);
-    console.log(para, para['role'] == 'admin');
-  }
-
-  log(): void {
-    console.log(this.user);
+    this.mode = para['role'] === 'admin';
   }
 
   signIn(): void {
     this.user.admin_mode = this.mode;
-    console.log('user', this.user);
     this.userPost.user = this.user;
-    this.userService.signIn(this.userPost).then((res) => {
-      localStorage.setItem('UserInfo', JSON.stringify(res));
-      let obj = localStorage.getItem('UserInfo');
-      this.router.navigate(['/dashboard']);
-    }, (error) => {
-      let content = JSON.parse(error['_body']).error;
-      this.msgs = [];
-      this.msgs.push({severity: 'error', summary: 'Error', detail: content});
-    });
+    this.userService.signIn(this.userPost).then(
+      (res) => {
+        this.redirect(res);
+      },
+      (error) => {
+        let content = JSON.parse(error['_body']).error;
+        this.msgs = [];
+        this.msgs.push({severity: 'error', summary: 'Error', detail: content});
+      }
+    );
+  }
+
+  redirect(res){
+    var user = res;
+    user['admin_mode'] = this.mode;
+    localStorage.setItem('user', JSON.stringify(user));
+    let obj = localStorage.getItem('user');
+    this.router.navigate(['']);
   }
 
   signUp() {

@@ -6,8 +6,8 @@
           <ul>
             <span style="float: right">
               <span *ngIf="user">
-                <li><a href="/users/edit"><i class="fa fa-user"></i> My Account</a></li>
-                <li><a href="/users/sign_out"><i class="fa fa-user"></i> Log out</a></li>
+                <li><a href="#"><i class="fa fa-user"></i>{{user.email}}</a></li>
+                <li><a href="#" (click)="logOut()"><i class="fa fa-user"></i> Log out</a></li>
               </span>
 
               <span *ngIf="!user">
@@ -17,7 +17,7 @@
             </span>
 
             <div class="">
-              <li><a href="#"><i class="fa fa-heart"></i> Category</a></li>
+              <li><a href="#"><i class="fa fa-heart"></i> DashBoard</a></li>
               <li><a href="#"><i class="fa fa-user"></i> Create Beer </a></li>
               <li class="logo"><a href="#">BEER CLUB</a></li>
             </div>
@@ -27,3 +27,4 @@
     </div>
   </div>
 </div>
+<p-growl [value]="msgs"></p-growl>
