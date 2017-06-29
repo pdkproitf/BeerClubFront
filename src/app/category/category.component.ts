@@ -66,7 +66,7 @@ export class CategoryComponent implements OnInit {
     )
   }
 
-  searchCategory(name: string){
+  searchCategory(){
     this._categories = [];
     for (let category of this.categories) {
       if ((category.name.toUpperCase().indexOf(this.searchCategoryParten.toUpperCase()) > -1) ||
@@ -74,6 +74,14 @@ export class CategoryComponent implements OnInit {
         this._categories.push(category);
       }
     }
+  }
+
+  save(id: number){
+
+  }
+
+  delete(id: number){
+
   }
 
   noticeMessage(content: string, status: number = 1){

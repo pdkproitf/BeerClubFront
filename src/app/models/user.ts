@@ -5,6 +5,7 @@ export class User {
     password: string;
     password_confirmation: string;
     id: number;
+    admin_mode: boolean;
 }
 export class UserPost {
     user: User;

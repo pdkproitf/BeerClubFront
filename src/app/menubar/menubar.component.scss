@@ -1,0 +1,33 @@
+.header-area {
+  background: none repeat scroll 0 0 #f4f4f4;
+  margin-bottom: 2em;
+
+  a {
+    color: #888;
+  }
+  .user-menu ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+  }
+  .user-menu li {
+    display: inline-block;
+  }
+  .logo{
+    margin-left: 30%;
+    font-size: large;
+    a{
+      color: red !important;
+      text-decoration: none;
+    }
+  }
+  .user-menu li a {
+    display: block;
+    font-size: 17px;
+    margin-right: 5px;
+    padding: 10px;
+  }
+  .user-menu li a i.fa {
+    margin-right: 5px;
+  }
+}

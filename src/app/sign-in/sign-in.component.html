@@ -1,7 +1,8 @@
 <div class="container form-container">
+  <p-growl [value]="msgs"></p-growl>
   <div class="ask">
     <button (click)="signUp()">Get Started</button>
-    <p>Don't have an account ?</p>
+    <p>Don't have a passport ?</p>
   </div>
   <br/><br/><br/><br/><br/><br/>
   <h2>Sign in to BeerClub</h2>
@@ -24,5 +25,4 @@
     <button pButton class="sign-in-btn" type="submit" label="Sign in">Sign In</button>
   </form>
 </div>
-
-<!-- <p-growl [value]="msgs"></p-growl> -->s
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,29 @@
+<div class="header-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="user-menu">
+          <ul>
+            <span style="float: right">
+              <span *ngIf="user">
+                <li><a href="/users/edit"><i class="fa fa-user"></i> My Account</a></li>
+                <li><a href="/users/sign_out"><i class="fa fa-user"></i> Log out</a></li>
+              </span>
+
+              <span *ngIf="!user">
+                <li><a href="/sign-up/customer"><i class="fa fa-user"></i> See My Passport</a></li>
+                  <li><a href="/sign-in/admin"><i class="fa fa-user"></i> Login</a></li>
+              </span>
+            </span>
+
+            <div class="">
+              <li><a href="#"><i class="fa fa-heart"></i> Category</a></li>
+              <li><a href="#"><i class="fa fa-user"></i> Create Beer </a></li>
+              <li class="logo"><a href="#">BEER CLUB</a></li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

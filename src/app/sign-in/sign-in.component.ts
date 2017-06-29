@@ -12,12 +12,16 @@ import { Message } from 'primeng/primeng';
 export class SignInComponent implements OnInit {
   user: User = new User();
   userPost: UserPost = new UserPost();
-  // msgs: Message[] = [];
+  mode: boolean = false;
+  msgs: Message[] = [];
+
   constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     let para = this.route.params['_value'];
-    console.log(para);
+    this.mode = para['role'] === 'admin'
+    console.log(para, para['role']);
+    console.log(para, para['role'] == 'admin');
   }
 
   log(): void {
@@ -25,23 +29,21 @@ export class SignInComponent implements OnInit {
   }
 
   signIn(): void {
-    console.log('signin');
+    this.user.admin_mode = this.mode;
+    console.log('user', this.user);
     this.userPost.user = this.user;
-    console.log('somehow');
-    this.userService.signIn(this.userPost)
-    .then((res) => {
+    this.userService.signIn(this.userPost).then((res) => {
       localStorage.setItem('UserInfo', JSON.stringify(res));
       let obj = localStorage.getItem('UserInfo');
       this.router.navigate(['/dashboard']);
     }, (error) => {
       let content = JSON.parse(error['_body']).error;
-      // this.msgs = [];
-      // this.msgs.push({severity: 'error', summary: 'Error', detail: content});
-    }
-  );
-}
+      this.msgs = [];
+      this.msgs.push({severity: 'error', summary: 'Error', detail: content});
+    });
+  }
 
-signUp() {
-  this.router.navigate(['sign-up']);
-}
+  signUp() {
+    this.router.navigate(['sign-up', 'Customer']);
+  }
 }
