@@ -15,12 +15,14 @@ import { UserService }            from './services/user-service';
 import { BeerService }            from './services/beer-service';
 import { AuthenLoggedIn }         from './services/authen-logged-in';
 import { CategoryService }        from './services/category-service';
+import { PassportService }        from './services/passport-service';
 import { CategoryComponent }      from './category/category.component';
 import { MaketingPageComponent }  from './maketing-page/maketing-page.component';
 import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
 import { MenubarComponent } from './menubar/menubar.component';
 import { BeerComponent } from './beer/beer.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { PassportsComponent } from './passports/passports.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MenubarComponent,
     BeerComponent,
     SignUpComponent,
+    PassportsComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     DialogModule,
     GrowlModule
   ],
-  providers: [AuthenLoggedIn, NotLoggedIn, UserService, CategoryService, BeerService],
+  providers: [AuthenLoggedIn, NotLoggedIn, UserService, CategoryService,
+      BeerService, PassportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

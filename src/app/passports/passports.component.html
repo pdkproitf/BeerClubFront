@@ -1,0 +1,28 @@
+<div class="content">
+  <p>Welcome To Craft Beer Club</p>
+  <h2>Check your passports now</h2>
+
+  <div class="search-group">
+    <span class="fa fa-search"></span>
+    <input class="search-text" type="text" [(ngModel)]="searchPassportParten" (keyup)="search()" placeholder="Search Passport's name"/>
+  </div>
+
+  <div class="table">
+    <table>
+      <tr class="table-header">
+        <th>Name</th>
+        <th>ID</th>
+        <th>Customer Name</th>
+        <th>Customer Email</th>
+        <th>Beer Drank</th>
+      </tr>
+      <tr *ngFor="let passport of _passports">
+        <td class="column-text"><a href="passports/{{passport.id}}">{{passport.name}}</a></td>
+        <td class="column-text">{{passport.id}}</td>
+        <td class="column-text">{{passport.customer.name}}</td>
+        <td class="column-text">{{passport.customer.email}}</td>
+        <td class="column-text">{{passport.beers.length}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+.content{
+  width: 80%;
+  margin: auto;
+  p{
+    height: 48px;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 48px;
+    color: green;
+    display: block;
+    margin-top: 5%;
+    text-align: center;
+  }
+  h2{
+    color: blueviolet;
+  }
+  .search-group{
+    margin-bottom: 20px;
+    width: 60%;
+    margin-top: 2em;
+    display: inline;
+    // input:focus{ background: #F3F5F8;}
+    .search-text{
+      font-size: 16px;
+      font-family: Lato;
+      background: transparent;
+      border: none;
+      line-height: 24px;
+      height: 35px;
+      width: 80%;
+      box-shadow: inset 0 -1px 0 0 #EEEEEE;
+      outline: none;
+      &:hover{
+        background: #F3F5F8;
+      }
+      &:focus{background: white;}
+    }
+    .imgspan{
+      font-size: 20px;
+      color: #898989;
+      width: 20px;
+      height: 20px;
+      margin-right: 1em;
+      background-repeat: no-repeat;
+    }
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    .column-text{
+      font-family: Lato;
+      font-size: 16px;
+      line-height: 24px;
+      color: #363636;
+    }
+    .table-header{
+      th{
+        width: 20%;
+        height: 50px;
+        font-family: Lato;
+        font-size: 14px;
+        line-height: 17px;
+        color: rgba(54,54,54,0.7);
+        font-weight: normal;
+      }
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      .project-title{
+        display: flex;
+        .project-bacground{
+          width: 24px;
+          height: 24px;
+          background: linear-gradient(180deg, #F57C6E 0%, #E84E3E 95.8%, #E74C3C 100%);
+          border-radius: 15px 35px 35px 15px;
+          margin-right: 1em;
+        }
+      }
+      .column-text{
+        font-family: Lato;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 24px;
+        color: #363636;
+      }
+      .oval{
+        width: 32px;
+        height: 32px;
+        background-color: #EEEEEE;
+        border-radius: 50%;
+      }
+      .text{
+        height: 17px;
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 17px;
+        text-align: center;
+        padding-top: 8px;
+        color: rgba(54,54,54,0.7);
+      }
+    }
+  }
+}
