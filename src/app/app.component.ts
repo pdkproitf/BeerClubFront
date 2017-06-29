@@ -14,10 +14,10 @@ export class AppComponent {
     this.router.events.subscribe(event =>{
       if (event instanceof NavigationEnd) {
         let currentUser = JSON.parse(localStorage.getItem('UserInfo'));
-        event.url.includes('sign-in')
-        event.url.includes('sign-up')
-        event.url.includes('')
-        event.url.includes('beer')
+        event.url.includes('sign-in');
+        event.url.includes('sign-up');
+        event.url.includes('');
+        event.url.includes('beer');
       }
     })
   }
