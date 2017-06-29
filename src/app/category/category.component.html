@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="content">
+    <div class="job-content">
+      <div class="header">
+        <div class="search-group">
+          <span class="fa fa-search imgspan"></span>
+          <input class="search-text" type="text" [(ngModel)]="searchCategoryParten" (keyup)="searchCategory()" placeholder="Search Category's name"/>
+        </div>
+
+        <button class="button-create" (click)="showDialog(true)" type="button">Create Category</button>
+      </div>
+
+      <div *ngFor="let category of _categories; let i = index;" class="job" >
+        <div class="header">
+          <input type="text" #aVariable value="{{category.name}}">
+          <div class="control" id="job-{{category.id}}" [hidden]="!user" >
+            <div class="oval" (click)="save(category, aVariable.value)">
+              <div class="text">
+                <i class="fa fa-fw fa-refresh" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="oval" (click)="delete(category)">
+              <div class="text">
+                <i class="fa fa-fw fa-trash" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="job-members">
+          <ul class="users-list">
+            <li *ngFor="let beer of category.beers">
+              <span *ngIf="beer" (click)="showBeer(beer.id)">
+                <img src="{{ '/assets/beer-picture/default-beer.png'}}">
+                <a class="users-list-name" href="#">{{beer.name}}</a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Create Category" [(visible)]="dialogVisible" [resizable]="false">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <input type="text" #Variable focus placeholder="Category Name">
+    </div>
+
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <button type="button" pButton icon="fa-check" (click)="createCategory(Variable.value)">Create</button>
+      <button type="button" pButton icon="fa-close" (click)="showDialog(false)">Cancle</button>
+    </div>
+</p-dialog>

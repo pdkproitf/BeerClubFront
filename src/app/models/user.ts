@@ -4,7 +4,7 @@ export class User {
     email: string;
     password: string;
     password_confirmation: string;
-    id: Number;
+    id: number;
 }
 export class UserPost {
     user: User;

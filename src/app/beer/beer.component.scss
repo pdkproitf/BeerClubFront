@@ -1,0 +1,45 @@
+.inline{
+  display: inline-block;
+}
+.beer{
+  width: 80%;
+  margin: auto;
+  .product-breadcroumb{
+    padding-left: 5%;
+  }
+  .product-breadcroumb > a {
+      margin-right: 31px;
+      position: relative;
+  }
+  .product-breadcroumb > a::before {
+      content: "/";
+      position: absolute;
+      right: -20px;
+      top: 2px;
+  }
+  .product-breadcroumb > a:last-child::before {
+      display: none;
+  }
+  .content{
+    display: flex;
+    .inform{
+      display: block;
+      margin-top: 100px;
+      margin-left: 3em;
+      width: 50%;
+      .text{
+        font-family: Titillium Web sans-serif;
+        font-size: 17px;
+        line-height: 24px;
+        color: #363636;
+        padding-bottom: 1em;
+      }
+      strong{
+        color: #3dc6ab;
+      }
+    }
+    .image{
+      display: block;
+    }
+  }
+}
