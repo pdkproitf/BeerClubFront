@@ -14,36 +14,52 @@ export class BeerService {
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
-    let userInfo = localStorage.getItem('UserInfo');
+    let userInfo = localStorage.getItem('user');
     if (error.status === 401 && userInfo != null) {
-      alert('Your token is expired');
-      localStorage.removeItem('UserInfo');
-      this.router.navigate(['sign-in']);
+      localStorage.removeItem('user');
+      this.router.navigate(['sign-in', 'admin']);
     }
     return Promise.reject(error.message || error);
   }
 
   getBeer(id: number): Promise<any> {
     let requestUrl = new ServerDomain().domain + '/beers/' + id;
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
     return this.http
-    .get(requestUrl)
+    .get(requestUrl, {headers: headers})
     .toPromise()
     .then(res => res.json())
     .catch(error => this.handleError(error));
   }
 
-  // createCategory(categoryPost: Object): Promise<any> {
-  //   let requestUrl = this.serverdomain.domain + '/categories';
-  //   let headers = new Headers();
-  //   this.headersService.createAuthHeaders(headers);
-  //   return this.http
-  //   .post(requestUrl, JSON.stringify(categoryPost), {headers: headers})
-  //   .toPromise()
-  //   .then(res => {
-  //     return res.json().data;
-  //   })
-  //   .catch(error => {
-  //     return this.handleError(error);
-  //   });
-  // }
+  archiveBeer(id: number){
+    let requestUrl = this.serverdomain.domain + '/beers/' + id + '/archive';
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
+    return this.http
+    .put(requestUrl, {}, {headers: headers})
+    .toPromise()
+    .then(res => {
+      return res.json().data;
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
+
+  unarchiveBeer(id: number){
+    let requestUrl = this.serverdomain.domain + '/beers/' + id + '/unarchive';
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
+    return this.http
+    .put(requestUrl, {}, {headers: headers})
+    .toPromise()
+    .then(res => {
+      return res.json().data;
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
 }

@@ -5,6 +5,6 @@ export class Beer{
   country: string;
   price: number;
   description: string;
-  archived: string;
+  archived: boolean;
   count: number;
 }

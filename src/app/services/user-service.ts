@@ -23,7 +23,7 @@ export class UserService {
         if (error.status === 401 && userInfo != null) {
             alert('Your token is expired');
             localStorage.removeItem('user');
-            this.router.navigate(['sign-in']);
+            this.router.navigate(['sign-in', 'admin']);
         }
         return Promise.reject(error.message || error);
     }

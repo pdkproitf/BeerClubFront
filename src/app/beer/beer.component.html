@@ -10,6 +10,20 @@
     </div>
 
     <div class="inform inline">
+
+      <div class="control-inform" *ngIf="user">
+        <div class="oval" (click)="archive(beer.id)">
+          <div class="text">
+            <i class="fa fa-{{ beer.archived? 'undo' : 'archive'}}" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="oval" (click)="edit(beer.id)">
+          <div class="text">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+
       <div class="text">
         <strong>Name:</strong>
         <label for="">{{beer.name}}</label>
@@ -39,6 +53,8 @@
         <strong>Description:</strong>
         <label for="">{{beer.description}}</label>
       </div>
+
     </div>
   </div>
 </div>
+<p-growl [value]="msgs"></p-growl>

@@ -18,15 +18,17 @@ export class CategoryService {
     if (error.status === 401 && userInfo != null) {
       alert('Your token is expired');
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['sign-in', 'admin']);
     }
     return Promise.reject(error.message || error);
   }
 
   getCategories(): Promise<any> {
     let requestUrl = new ServerDomain().domain + '/categories';
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
     return this.http
-    .get(requestUrl)
+    .get(requestUrl, {headers: headers})
     .toPromise()
     .then(res => res.json())
     .catch(error => this.handleError(error));
