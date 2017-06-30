@@ -25,7 +25,6 @@ export class PassportsComponent implements OnInit {
       (res) => {
         this.passports = res['data'];
         this._passports = this.passports;
-        console.log('passport', this.passports);
       },
       (error) =>{
         console.log('error', error['_body']);
@@ -37,7 +36,7 @@ export class PassportsComponent implements OnInit {
     this._passports = [];
     for (let passport of this.passports) {
       if ((passport.name.toUpperCase().indexOf(this.searchPassportParten.toUpperCase()) > -1) ||
-      (passport.name.toLowerCase() .indexOf(this.searchPassportParten.toLowerCase()) > -1)) {
+        (passport.name.toLowerCase() .indexOf(this.searchPassportParten.toLowerCase()) > -1)) {
         this._passports.push(passport);
       }
     }

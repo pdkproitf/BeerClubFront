@@ -9,7 +9,9 @@ import { SignInComponent }  from './sign-in/sign-in.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AccordionModule,
          DialogModule,
-         GrowlModule}       from 'primeng/primeng';
+         GrowlModule,
+         ButtonModule,
+         TabViewModule}           from 'primeng/primeng';
 import { NotLoggedIn }            from './services/not-logged-in';
 import { UserService }            from './services/user-service';
 import { BeerService }            from './services/beer-service';
@@ -23,6 +25,7 @@ import { MenubarComponent } from './menubar/menubar.component';
 import { BeerComponent } from './beer/beer.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PassportsComponent } from './passports/passports.component';
+import { PassportComponent } from './passport/passport.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { PassportsComponent } from './passports/passports.component';
     BeerComponent,
     SignUpComponent,
     PassportsComponent,
+    PassportComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { PassportsComponent } from './passports/passports.component';
     AccordionModule,
     BrowserAnimationsModule,
     DialogModule,
-    GrowlModule
+    GrowlModule,
+    ButtonModule,
+    TabViewModule
   ],
   providers: [AuthenLoggedIn, NotLoggedIn, UserService, CategoryService,
       BeerService, PassportService],

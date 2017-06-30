@@ -17,6 +17,7 @@ export class AppComponent {
         event.url.includes('sign-up');
         event.url.includes('beer');
         event.url.includes('passports');
+        event.url.includes('passport');
       }
     })
   }
