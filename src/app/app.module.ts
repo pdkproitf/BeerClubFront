@@ -16,6 +16,7 @@ import { NotLoggedIn }            from './services/not-logged-in';
 import { UserService }            from './services/user-service';
 import { BeerService }            from './services/beer-service';
 import { AuthenLoggedIn }         from './services/authen-logged-in';
+import { AuthenAdmin }         from './services/authen-admin';
 import { CategoryService }        from './services/category-service';
 import { PassportService }        from './services/passport-service';
 import { CategoryComponent }      from './category/category.component';
@@ -53,7 +54,7 @@ import { PassportComponent } from './passport/passport.component';
     TabViewModule
   ],
   providers: [AuthenLoggedIn, NotLoggedIn, UserService, CategoryService,
-      BeerService, PassportService],
+      BeerService, PassportService, AuthenAdmin],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

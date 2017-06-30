@@ -4,23 +4,29 @@
       <div class="col-md-8">
         <div class="user-menu">
           <ul>
-            <span style="float: right">
+            <span class="user">
               <span *ngIf="user">
                 <li><a href="#"><i class="fa fa-user"></i>{{user.email}}</a></li>
                 <li><a href="#" (click)="logOut()"><i class="fa fa-user"></i> Log out</a></li>
               </span>
 
               <span *ngIf="!user">
-                <li><a href="/sign-up/customer"><i class="fa fa-user"></i> See My Passport</a></li>
-                  <li><a href="/sign-in/admin"><i class="fa fa-user"></i> Login</a></li>
+                <li><a href="/sign-in/customer"><i class="fa fa-user"></i> See My Passport </a></li>
+                  <li><a href="/sign-in/admin"><i class="fa fa-user"></i> Login </a></li>
               </span>
             </span>
 
-            <div class="">
-              <li><a href="/passports"><i class="fa fa-heart"></i> PassPort</a></li>
+            <span class="action">
+              <li *ngIf="user && !user.admin_mode"><a href="/passport/{{user['passport']['id']}}"><i class="fa fa-heart"></i> My PassPort </a></li>
+              <li *ngIf="!user || user.admin_mode"><a href="/passports"><i class="fa fa-heart"></i> PassPorts</a></li>
               <li><a href="/beer"><i class="fa fa-user"></i> Create Beer </a></li>
-              <li class="logo"><a href="#">BEER CLUB</a></li>
-            </div>
+            </span>
+
+            <span class="logo">
+              <a href="#">
+                <img src="{{ '/assets/beer-picture/craft-beer-logo.png'}}" alt="">
+              </a>
+            </span>
           </ul>
         </div>
       </div>

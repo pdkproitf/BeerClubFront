@@ -7,23 +7,35 @@
   }
   .user-menu ul {
     list-style: outside none none;
-    margin: 0;
+    margin-top: 0;
     padding: 0;
+    height: 80px;
+    span{
+      display: inline-block;
+    }
+    .user{
+      margin-top: 1em;
+      float: right;
+    }
   }
   .user-menu li {
     display: inline-block;
+    :hover{
+      background: green;
+      color: white;
+    }
   }
   .logo{
+    display: inline-block;;
     margin-left: 30%;
-    font-size: large;
-    a{
-      color: red !important;
-      text-decoration: none;
+    img{
+      width: 80px;
+      padding-top: 1em;
     }
   }
   .user-menu li a {
     display: block;
-    font-size: 17px;
+    font-size: 18px;
     margin-right: 5px;
     padding: 10px;
   }

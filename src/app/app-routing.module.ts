@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent }         from './app.component';
 import { NotLoggedIn }          from './services/not-logged-in';
 import { AuthenLoggedIn }       from './services/authen-logged-in';
+import { AuthenAdmin }          from './services/authen-admin';
 import { SignInComponent }      from './sign-in/sign-in.component';
 import { SignUpComponent }      from './sign-up/sign-up.component';
 import { CategoryComponent }    from './category/category.component';
@@ -17,8 +18,8 @@ const routes: Routes = [
     { path: 'maketing-page', component: MaketingPageComponent},
     { path: '', component: CategoryComponent },
     { path: 'beer/:id', component: BeerComponent },
-    { path: 'beer', component: BeerComponent, canActivate: [AuthenLoggedIn] },
-    { path: 'passports', component: PassportsComponent, canActivate: [AuthenLoggedIn] },
+    { path: 'beer', component: BeerComponent, canActivate: [AuthenAdmin] },
+    { path: 'passports', component: PassportsComponent, canActivate: [AuthenAdmin] },
     { path: 'passport/:id', component: PassportComponent, canActivate: [AuthenLoggedIn] }
 ];
 @NgModule({
