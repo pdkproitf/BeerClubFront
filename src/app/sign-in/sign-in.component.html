@@ -1,13 +1,15 @@
 <div class="container form-container">
   <p-growl [value]="msgs"></p-growl>
   <div class="ask">
-    <button (click)="signUp()">Get Started</button>
+    <button (click)="signUp()">Create Customer</button>
     <p>Don't have a passport ?</p>
   </div>
-  <br/><br/><br/><br/><br/><br/>
-  <h2>Sign in to BeerClub</h2>
-  <h3>Enter your details below</h3>
-  <br/><br/>
+
+  <div class="maketing">
+    <h2>Sign in to BeerClub</h2>
+    <h3>Enter your details below</h3>
+  </div>
+
   <form (ngSubmit)="signIn()">
     <div class="form-group">
       <label for="email">Email: </label><br/>
@@ -22,7 +24,7 @@
     </div>
     <br/>
     <br/>
-    <button pButton class="sign-in-btn" type="submit" label="Sign in">Sign In</button>
+    <button pButton class="sign-in-btn" type="submit" label="Sign in"></button>
   </form>
 </div>
 <p-growl [value]="msgs"></p-growl>

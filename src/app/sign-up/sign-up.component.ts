@@ -35,6 +35,7 @@ export class SignUpComponent implements OnInit {
     this.userPost.user = this.user;
     this.userService.signUp(this.userPost).then(
       (res) => {
+        this.msgs.push({severity: 'success', summary: 'Success Message', detail: res.status});
         this.signIn();
       },
       (error) => {

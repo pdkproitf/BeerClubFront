@@ -2,11 +2,13 @@
 <div class="container form-container">
   <button (click)="signIn()" class="asking" type="button">Sign In</button>
   <p class="asking">Already have an account?</p>
-  <br><br><br><br><br><br>
-  <h2>Get started absolutely free.</h2>
-  <p class="des">Free forever. No credit card needed.</p>
-  <h4>Welcome to company Beer Club!</h4>
-  <br><br><br>
+
+  <div class="maketing">
+    <h2>Get started absolutely free.</h2>
+    <h4>Create an account to get your passport</h4>
+    <p class="des">Free forever. No credit card needed.</p>
+  </div>
+
   <form (ngSubmit)="submit()">
     <div class="form-group">
       <label for="name">Name: </label><br/>
@@ -32,8 +34,8 @@
       placeholder="6+ characters" required name="password_confirmation">
     </div>
     <br/><br/>
-    <button class="sign-up-btn" id="submit" pButton type="submit">Sign Up Free</button>
+    <button class="sign-up-btn" pButton type="submit" label="Sign Up Free"></button>
   </form>
   <br/>
-  <p-growl [value]="msgs"></p-growl>
 </div>
+<p-growl [value]="msgs"></p-growl>
