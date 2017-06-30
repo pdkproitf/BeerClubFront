@@ -5,7 +5,6 @@ export class HeadersService {
     if (localStorage.getItem('user') != null) {
       let userInfo = localStorage.getItem('user');
       let userObj = JSON.parse(userInfo);
-      console.log('user header', userObj);
       headers.append('client', userObj.client);
       headers.append('access_token', userObj.token);
     }

@@ -10,7 +10,7 @@
     </div>
 
     <div class="inform inline">
-      <div class="control-inform" *ngIf="user && !isCreate">
+      <div class="control-inform" *ngIf="user && user.admin_mode && !isCreate">
         <div class="oval" (click)="archive(beer.id)">
           <div class="text"><i class="fa fa-{{ beer.archived? 'undo' : 'archive'}}" aria-hidden="true"></i></div>
         </div>
