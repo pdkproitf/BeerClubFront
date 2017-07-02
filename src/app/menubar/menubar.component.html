@@ -1,36 +1,12 @@
-<div class="header-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="user-menu">
-          <ul>
-            <span class="user">
-              <span *ngIf="user">
-                <li><a href="#"><i class="fa fa-user"></i>{{user.email}}</a></li>
-                <li><a href="#" (click)="logOut()"><i class="fa fa-user"></i> Log out</a></li>
-              </span>
-
-              <span *ngIf="!user">
-                <li><a href="/sign-in/customer"><i class="fa fa-user"></i> See My Passport </a></li>
-                  <li><a href="/sign-in/admin"><i class="fa fa-user"></i> Login </a></li>
-              </span>
-            </span>
-
-            <span class="action">
-              <li *ngIf="user && !user.admin_mode"><a href="/passport/{{user['passport']['id']}}"><i class="fa fa-heart"></i> My PassPort </a></li>
-              <li *ngIf="!user || user.admin_mode"><a href="/passports"><i class="fa fa-heart"></i> PassPorts</a></li>
-              <li><a href="/beer"><i class="fa fa-user"></i> Create Beer </a></li>
-            </span>
-
-            <span class="logo">
-              <a href="#">
-                <img src="{{ '/assets/beer-picture/craft-beer-logo.png'}}" alt="">
-              </a>
-            </span>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="topnav">
+  <span class="logo"><a [class]="classActive[0]" (click)="setActiveMenu(0)" href="#"><img src="{{ '/assets/beer-picture/craft-beer-logo.png'}}" alt=""></a></span>
+  <span *ngIf="user"><a (click)="setActiveMenu(0)" href="#" (click)="logOut()"><i class="fa fa-user"></i> Log out</a></span>
+  <span *ngIf="user"><a (click)="setActiveMenu(0)" href="#"><i class="fa fa-user"></i>{{user.email}}</a></span>
+  <span *ngIf="!user"><a [class]="classActive[1]" (click)="setActiveMenu(1)"  href="/sign-in/admin"><i class="fa fa-user"></i> Login </a></span>
+  <span *ngIf="user && user.admin_mode"><a [class]="classActive[2]" (click)="setActiveMenu(2)" href="/sign-up/admin"><i class="fa fa-user"></i>New Account</a></span>
+  <span *ngIf="!user"><a [class]="classActive[3]" (click)="setActiveMenu(3)" href="/sign-in/customer"><i class="fa fa-user"></i> See My Passport </a></span>
+  <span *ngIf="user && user.admin_mode"><a [class]="classActive[4]" (click)="setActiveMenu(4)" href="/beer"><i class="fa fa-user"></i> Create Beer </a></span>
+  <span *ngIf="user && user.admin_mode"><a [class]="classActive[5]" (click)="setActiveMenu(5)" href="/passports"><i class="fa fa-heart"></i> PassPorts</a></span>
+  <span *ngIf="user && !user.admin_mode"><a [class]="classActive[6]" (click)="setActiveMenu(6)" href="/passport/{{user['passport']['id']}}"><i class="fa fa-heart"></i> My PassPort </a></span>
 </div>
 <p-growl [value]="msgs"></p-growl>

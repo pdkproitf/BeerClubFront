@@ -15,7 +15,9 @@ export class SignInComponent implements OnInit {
   mode: boolean = false;
   msgs: Message[] = [];
 
-  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) {
+    localStorage.removeItem('user');
+  }
 
   ngOnInit() {
     let para = this.route.params['_value'];
@@ -42,6 +44,7 @@ export class SignInComponent implements OnInit {
     user['admin_mode'] = this.mode;
     localStorage.setItem('user', JSON.stringify(user));
     let obj = localStorage.getItem('user');
+    window.location.reload();
     this.router.navigate(['']);
   }
 

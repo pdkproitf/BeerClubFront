@@ -22,12 +22,13 @@
 
       <div class="text">
         <strong>Name:</strong>
-        <input [ngClass]="inputClass" pInputText type="text" class="form-control" [(ngModel)]="beer.name" name="name" disabled="{{!isEdit}}" required>
+        <input [ngClass]="inputClass" pInputText type="text" class="form-control"
+          placeholder="Tiger" [(ngModel)]="beer.name" name="name" disabled="{{!isEdit}}" required>
       </div>
 
       <div class="text">
         <strong>Manufacturer: </strong>
-        <input [ngClass]="inputClass" pInputText type="text" class="form-control" [(ngModel)]="beer.manufacurter" name="mamnufacurte" disabled="{{!isEdit}}" required>
+        <input [ngClass]="inputClass" pInputText type="text" class="form-control" placeholder="Adam" [(ngModel)]="beer.manufacurter" name="mamnufacurte" disabled="{{!isEdit}}" required>
       </div>
 
       <div class="text">
@@ -41,17 +42,17 @@
 
       <div class="text">
         <strong>Country:</strong>
-        <input [ngClass]="inputClass" pInputText type="text" class="form-control" [(ngModel)]="beer.country" name="cpuntry" disabled="{{!isEdit}}" required>
+        <input [ngClass]="inputClass" pInputText type="text" class="form-control" placeholder="Ha Noi" [(ngModel)]="beer.country" name="cpuntry" disabled="{{!isEdit}}" required>
       </div>
 
       <div class="text">
         <strong>Price:</strong>
-        $<input [ngClass]="inputClass" pInputText type="number" class="form-control" [(ngModel)]="beer.price" name="price" disabled="{{!isEdit}}" required>
+        $<input [ngClass]="inputClass" pInputText type="number" class="form-control" placeholder="2.3" [(ngModel)]="beer.price" name="price" disabled="{{!isEdit}}" required>
       </div>
 
       <div class="text">
         <strong>Description:</strong>
-        <textarea [ngClass]="inputClass" pInputText type="text" class="form-control" [(ngModel)]="beer.description" name="description" disabled="{{!isEdit}}" required></textarea>
+        <textarea [ngClass]="inputClass" pInputText type="text" class="form-control" placeholder="Beer's Introduce" [(ngModel)]="beer.description" name="description" disabled="{{!isEdit}}" required></textarea>
       </div>
 
       <div class="form-button" *ngIf="isEdit">
