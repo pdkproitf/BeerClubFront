@@ -27,6 +27,10 @@ export class SignUpComponent implements OnInit {
     this.router.navigate(['sign-in', 'Customer']);
   }
 
+  mainBoard() {
+    this.router.navigate(['']);
+  }
+
   submit(): void {
     this.user.password_confirmation = this.user.password;
     let arrayName = this.user.name.split(' ');
@@ -36,7 +40,7 @@ export class SignUpComponent implements OnInit {
     this.userService.signUp(this.userPost).then(
       (res) => {
         this.msgs.push({severity: 'success', summary: 'Success Message', detail: res.status});
-        this.signIn();
+        (localStorage.getItem('user'))? this.mainBoard() : this.signIn();
       },
       (error) => {
         let content = JSON.parse(error['_body']).error;
