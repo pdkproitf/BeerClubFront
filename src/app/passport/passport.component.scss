@@ -12,6 +12,9 @@
     display: block;
     margin-top: 5%;
     text-align: center;
+    label{
+      display: block;
+    }
   }
   .search-group{
     margin-bottom: 20px;
@@ -60,8 +63,9 @@
         border: 9px;
         border-color: #DDE1E5;
         border-radius: 25px;
-        margin-left: 1em;
         border: 1px solid #ddd;
+        margin-left: 3em;
+        margin-bottom: 3em;
         button{
           float: right;
         }
