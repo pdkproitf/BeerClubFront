@@ -9,7 +9,9 @@ import 'rxjs/add/operator/toPromise';
 export class PassportService {
   serverdomain: ServerDomain = new ServerDomain();
   headersService: HeadersService = new HeadersService();
+  auth = null;
   constructor(private http: Http, private router: Router) {
+    this.auth = this.headersService.createAuthParams();
   }
 
   private handleError(error: any): Promise<any> {
@@ -28,7 +30,7 @@ export class PassportService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-      .get(requestUrl, {headers: headers})
+      .get(requestUrl, {headers: headers, params: this.auth})
       .toPromise()
       .then(res => res.json())
       .catch(error => this.handleError(error));
@@ -39,7 +41,7 @@ export class PassportService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-      .get(requestUrl, {headers: headers})
+      .get(requestUrl, {headers: headers, params: this.auth})
       .toPromise()
       .then(res => res.json())
       .catch(error => this.handleError(error));
@@ -50,7 +52,7 @@ export class PassportService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-      .post(requestUrl, JSON.stringify(data), {headers: headers})
+      .post(requestUrl, JSON.stringify(Object.assign(data, this.auth)), {headers: headers})
       .toPromise()
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});
@@ -61,7 +63,7 @@ export class PassportService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-      .delete(requestUrl, {headers: headers, body: JSON.stringify(data)})
+      .delete(requestUrl, {headers: headers, body: JSON.stringify(Object.assign(data, this.auth))})
       .toPromise()
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});

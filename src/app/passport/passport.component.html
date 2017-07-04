@@ -1,6 +1,9 @@
 <div class="content">
   <p>Passport</p>
-
+  <p *ngIf="passport && passport.customer">
+    <label for="">Customer's Name: {{passport.customer.name}}</label>
+    <label for="">Customer's Email: {{passport.customer.email}}</label>
+  </p>
   <div class="search-group">
       <span class="fa fa-search"></span>
       <input class="search-text" type="text" [(ngModel)]="searchBeerParten" (keyup)="search()" placeholder="Search Beer's name"/>

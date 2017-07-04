@@ -77,7 +77,11 @@ export class CategoryComponent implements OnInit {
   save(id: number, name: string){
     this.categoryService.updateCategory(id, this.getCategoryPost(name)).then(
       (result) => {
-        this.categories.push(result);
+        for (let i in this.categories)
+          if(this.categories[i].id == id){
+            this.categories[i] = result;
+            break;
+          }
         this.noticeMessage('Success!', 0);
       },
       (error) => {
