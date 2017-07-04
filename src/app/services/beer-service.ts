@@ -9,7 +9,9 @@ import 'rxjs/add/operator/toPromise';
 export class BeerService {
   serverdomain: ServerDomain = new ServerDomain();
   headersService: HeadersService = new HeadersService();
+  auth = null;
   constructor(private http: Http, private router: Router) {
+    this.auth = this.headersService.createAuthParams();
   }
 
   private handleError(error: any): Promise<any> {
@@ -27,7 +29,7 @@ export class BeerService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-        .get(requestUrl, {headers: headers})
+        .get(requestUrl, {headers: headers, body: JSON.stringify(this.auth)})
         .toPromise()
         .then(res => res.json())
         .catch(error => this.handleError(error));
@@ -38,7 +40,7 @@ export class BeerService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-        .get(requestUrl, {headers: headers})
+        .get(requestUrl, {headers: headers, body: JSON.stringify(this.auth)})
         .toPromise()
         .then(res => res.json())
         .catch(error => this.handleError(error));
@@ -49,7 +51,7 @@ export class BeerService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
       return this.http
-      .put(requestUrl, {}, {headers: headers})
+      .put(requestUrl, JSON.stringify(this.auth), {headers: headers})
       .toPromise()
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});
@@ -60,7 +62,7 @@ export class BeerService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-      .put(requestUrl, {}, {headers: headers})
+      .put(requestUrl, JSON.stringify(this.auth), {headers: headers})
       .toPromise()
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});
@@ -71,7 +73,7 @@ export class BeerService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-      .put(requestUrl, JSON.stringify(beerPost), {headers: headers})
+      .put(requestUrl, JSON.stringify(Object.assign(beerPost, this.auth)), {headers: headers})
       .toPromise()
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});
@@ -82,7 +84,7 @@ export class BeerService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-      .post(requestUrl, JSON.stringify(beerPost), {headers: headers})
+      .post(requestUrl, JSON.stringify(Object.assign(beerPost, this.auth)), {headers: headers})
       .toPromise()
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});

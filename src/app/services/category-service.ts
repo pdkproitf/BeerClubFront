@@ -27,8 +27,9 @@ export class CategoryService {
     let requestUrl = new ServerDomain().domain + '/categories';
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
+    var auth = this.headersService.createAuthParams();
     return this.http
-      .get(requestUrl, {headers: headers})
+      .get(requestUrl, {headers: headers, body: JSON.stringify(auth)})
       .toPromise()
       .then(res => res.json())
       .catch(error => this.handleError(error));
@@ -38,8 +39,9 @@ export class CategoryService {
     let requestUrl = this.serverdomain.domain + '/categories';
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
+    var auth = this.headersService.createAuthParams();
     return this.http
-      .post(requestUrl, JSON.stringify(categoryPost), {headers: headers})
+      .post(requestUrl, JSON.stringify(Object.assign(categoryPost, auth)), {headers: headers})
       .toPromise()
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});
@@ -49,8 +51,9 @@ export class CategoryService {
     let requestUrl = this.serverdomain.domain + '/categories/' + id;
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
+    var auth = this.headersService.createAuthParams();
     return this.http
-      .put(requestUrl, JSON.stringify(categoryPost), {headers: headers})
+      .put(requestUrl, JSON.stringify(Object.assign(categoryPost, auth)), {headers: headers})
       .toPromise()
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});
@@ -60,8 +63,9 @@ export class CategoryService {
     let requestUrl = this.serverdomain.domain + '/categories/' + id;
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
+    var auth = this.headersService.createAuthParams();
     return this.http
-      .delete(requestUrl, {headers: headers})
+      .delete(requestUrl, {headers: headers, body: JSON.stringify(auth)})
       .toPromise()
       .then(res => { return res.json().data;})
       .catch(error => { return this.handleError(error);});

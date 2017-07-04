@@ -46,8 +46,9 @@ export class UserService {
         let requestUrl = this.serverdomain.domain + '/users';
         let headers = new Headers;
         this.headersService.createAuthHeaders(headers);
+        var auth = this.headersService.createAuthParams();
         return this.http
-        .post(requestUrl, JSON.stringify(user), {headers: headers})
+        .post(requestUrl, JSON.stringify(Object.assign(user, auth)), {headers: headers})
         .toPromise()
         .then(res => res.json().data)
         .catch(this.handleError);
