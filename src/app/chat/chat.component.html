@@ -2,7 +2,7 @@
   <div class="col-md-9">
     <ul id="conversations-list">
       <span *ngFor="let conversation of conversations">
-        <app-conversation [conversation]="conversation"></app-conversation>
+        <app-conversation [conversation]="conversation" [receiveMessage]="message"></app-conversation>
       </span>
     </ul>
   </div>

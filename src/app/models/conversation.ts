@@ -4,12 +4,21 @@ export class Conversation{
   recipient: User;
   sender: User;
   id: number;
-  messages: Message[];
+  messages: ChatMessage[];
 }
 
-export class Message{
+export class ChatMessage{
   id: number;
   user: User;
   body: string;
+  conversation_id: number;
+}
+
+export class MessagePost{
+  id: number;
+  message: {
+    user_id: number;
+    body: string;
+  }
   conversation_id: number;
 }

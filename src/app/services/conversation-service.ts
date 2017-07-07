@@ -23,8 +23,20 @@ export class ConversationService {
     return Promise.reject(error.message || error);
   }
 
-  create(data: Object): Promise<any> {
+  getConversation(data: Object): Promise<any> {
     let requestUrl = this.serverdomain.domain + '/conversations';
+    let headers = new Headers();
+    this.headersService.createAuthHeaders(headers);
+    var auth = this.headersService.createAuthParams();
+    return this.http
+      .post(requestUrl, JSON.stringify(Object.assign(data, auth)), {headers: headers})
+      .toPromise()
+      .then(res => { return res.json().data;})
+      .catch(error => { return this.handleError(error);});
+  }
+
+  createMessage(data: Object): Promise<any> {
+    let requestUrl = this.serverdomain.domain + '/messages';
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     var auth = this.headersService.createAuthParams();

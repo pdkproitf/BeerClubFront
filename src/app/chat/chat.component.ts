@@ -1,9 +1,8 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Ng2Cable, Broadcaster }    from 'ng2-cable';
 import { ConversationService }      from '../services/conversation-service';
-import { Conversation, Message }    from '../models/conversation';
+import { Conversation, ChatMessage }    from '../models/conversation';
 import { User }    from '../models/user';
-import * as $      from 'jquery';
 
 @Component({
   selector: 'app-chat',
@@ -15,6 +14,9 @@ export class ChatComponent implements OnInit {
   private conversations: Conversation[] = [];
   private users: User[] = [];
   private current_user: User;
+  // using to active message sennd to conversation
+  private count: number = 0;
+  private message: ChatMessage;
 
   constructor(private ng2cable: Ng2Cable, private broadcaster: Broadcaster, private conversationService: ConversationService) {
     this.getUser();
@@ -31,9 +33,11 @@ export class ChatComponent implements OnInit {
       message => {
         if(message['message'] == 'list_user'){
           this.users = message['data'];
-          console.log('vo day ')
+        }else if(message['message'] == 'broadcast'){
+          this.message = message['data'];
+          this.count = this.count + 1;
+          console.log('get boastcast', message);
         }
-        console.log('message', message);
       }
     );
   }
@@ -50,7 +54,7 @@ export class ChatComponent implements OnInit {
   createConversation(id: number){
     var index = this.conversations.findIndex(x => x.recipient.id == id);
     if(index == -1){
-      this.conversationService.create({recipient_id: id}).then(
+      this.conversationService.getConversation({recipient_id: id}).then(
         (res) => {
           this.conversations.push(res);
         },
