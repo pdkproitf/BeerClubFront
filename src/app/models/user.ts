@@ -6,6 +6,8 @@ export class User {
     password_confirmation: string;
     id: number;
     admin_mode: boolean;
+    token: string;
+    client: string;
 }
 export class UserPost {
     user: User;

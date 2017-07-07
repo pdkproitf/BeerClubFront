@@ -8,5 +8,6 @@
   <span *ngIf="user && user.admin_mode"><a [class]="classActive[4]" (click)="setActiveMenu(4)" href="/beer"><i class="fa fa-user"></i> Create Beer </a></span>
   <span *ngIf="user && user.admin_mode"><a [class]="classActive[5]" (click)="setActiveMenu(5)" href="/passports"><i class="fa fa-heart"></i> PassPorts</a></span>
   <span *ngIf="user && !user.admin_mode"><a [class]="classActive[6]" (click)="setActiveMenu(6)" href="/passport/{{user['passport']['id']}}"><i class="fa fa-heart"></i> My PassPort </a></span>
+  <span *ngIf="user"><a [class]="classActive[6]" (click)="setActiveMenu(6)" href="/chat/"><i class="fa fa-heart"></i> Chat </a></span>
 </div>
 <p-growl [value]="msgs"></p-growl>

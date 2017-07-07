@@ -1,0 +1,26 @@
+<li class="content">
+  <div class="panel panel-default" data-conversation-id="_conversation.id">
+    <div class="panel-heading">
+      <a href="javascrop:void(0)" class="toggle-window">{{_conversation.recipient.email}}</a>
+      <a href="javascrop:void(0)" (click)="closeConversation()" class="btn btn-default btn-xs pull-right"></a>
+    </div>
+
+    <div class="panel-body" >
+      <div class="messages-list">
+        <ul>
+          <li *ngFor="let message of messages">
+            <div class="row">
+              <div [class]="user.id == message.user_id ? 'message-sent' : 'message-received'">
+                {{message.body}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <form class="new_message">
+        <textarea name="body" class="form-control" #chat></textarea>
+        <input type="submit" class="btn btn-success" value="Send" (click)="createMessage(chat.value)">
+      </form>
+    </div>
+  </div>
+</li>

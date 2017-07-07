@@ -19,6 +19,7 @@ import { AuthenLoggedIn }         from './services/authen-logged-in';
 import { AuthenAdmin }         from './services/authen-admin';
 import { CategoryService }        from './services/category-service';
 import { PassportService }        from './services/passport-service';
+import { ConversationService }    from './services/conversation-service';
 import { CategoryComponent }      from './category/category.component';
 import { MaketingPageComponent }  from './maketing-page/maketing-page.component';
 import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
@@ -27,6 +28,10 @@ import { BeerComponent } from './beer/beer.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PassportsComponent } from './passports/passports.component';
 import { PassportComponent } from './passport/passport.component';
+import { ChatComponent } from './chat/chat.component';
+import { Ng2Cable, Broadcaster } from 'ng2-cable';
+import { ConversationComponent } from './conversation/conversation.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,8 @@ import { PassportComponent } from './passport/passport.component';
     SignUpComponent,
     PassportsComponent,
     PassportComponent,
+    ChatComponent,
+    ConversationComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,10 +58,12 @@ import { PassportComponent } from './passport/passport.component';
     DialogModule,
     GrowlModule,
     ButtonModule,
-    TabViewModule
+    TabViewModule,
+    NgbModule.forRoot()
   ],
   providers: [AuthenLoggedIn, NotLoggedIn, UserService, CategoryService,
-      BeerService, PassportService, AuthenAdmin],
+    BeerService, PassportService, AuthenAdmin, Ng2Cable, Broadcaster,
+    ConversationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
