@@ -91,6 +91,10 @@ export class ConversationComponent implements OnInit {
     }
   }
 
+  ngAfterViewChecked() {
+    this.scrollMessageView(this._conversation.id);
+ }
+
   noticeMessage(content: string, status: number = 1){
     this.msgs = [];
     switch(status){
