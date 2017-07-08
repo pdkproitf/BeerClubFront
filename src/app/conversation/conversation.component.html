@@ -1,14 +1,14 @@
 <li class="content" *ngIf="_conversation">
   <div class="panel panel-default" id="convention-{{_conversation.id}}">
     <div class="panel-heading">
-      <a href="javascrop:void(0)" class="toggle-window">{{(current_user.id == _conversation.recipient.id) ? _conversation.sender.email : _conversation.recipient.email}}</a>
-      <a href="javascrop:void(0)" (click)="closeConversation()" class="btn btn-default btn-xs pull-right"></a>
+      <a href="javascrop:void(0)">{{(current_user.id == _conversation.recipient.id) ? _conversation.sender.email : _conversation.recipient.email}}</a>
+      <a href="javascrop:void(0)" (click)="closeConversation()" class="btn btn-default btn-xs pull-right fa fa-window-close"></a>
     </div>
 
     <div class="panel-body" >
       <div class="messages-list">
         <ul>
-          <li *ngFor="let message of messages">
+          <li *ngFor="let message of messages; let i = index"  id="li{{i}}">
             <div *ngIf="message" class="row">
               <div [class]="current_user.id == message.user.id ? 'message-sent' : 'message-received'">
                 {{message.body}}

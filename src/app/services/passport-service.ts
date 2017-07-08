@@ -41,7 +41,7 @@ export class PassportService {
     let headers = new Headers();
     this.headersService.createAuthHeaders(headers);
     return this.http
-      .get(requestUrl, {headers: headers, params: this.auth})
+      .get(requestUrl, {params: this.auth})
       .toPromise()
       .then(res => res.json())
       .catch(error => this.handleError(error));

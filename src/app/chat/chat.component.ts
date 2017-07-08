@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit {
   private current_user: User;
   // using to active message sennd to conversation
   private count: number = 0;
-  private message: ChatMessage;
+  private url = 'ws://localhost:3000/cable/';
 
   constructor(private ng2cable: Ng2Cable, private broadcaster: Broadcaster, private conversationService: ConversationService) {
     this.getUser();
@@ -27,7 +27,7 @@ export class ChatComponent implements OnInit {
   }
 
   createConsumer(){
-    this.ng2cable.subscribe('ws://localhost:3000/cable/?token=' + this.current_user.token  +
+    this.ng2cable.subscribe(this.url + '?token=' + this.current_user.token  +
       '&client=' + this.current_user.client, 'ConversationChannel');
     this.broadcaster.on<string>('ConversationChannel').subscribe(
       message => {
@@ -72,10 +72,20 @@ export class ChatComponent implements OnInit {
   processServerBroadcast(message: ChatMessage){
     var index = this.conversations.findIndex(x => x.id == message.conversation_id)
     if(index != -1){
-      this.message = message;
-      this.count = this.count + 1;
+      for(let conversation of this.conversations){
+        if(conversation.id == message.conversation_id){
+          conversation.messages.push(message);
+        }
+      }
     }else{
       this.createConversation(message.user.id)
     }
+    this.count = this.count + 1;
+    console.log(this.count)
+  }
+
+  deleteConversation(id: number){
+    var index = this.conversations.findIndex(x => x.id == id);
+    this.conversations.splice(index, 1);
   }
 }

@@ -65,8 +65,6 @@ export class PassportComponent implements OnInit {
   }
 
   getBeersNew(beers, beers_drank){
-    console.log('beers', beers);
-    console.log('beers_drank', beers_drank);
     this.beers_new = [];
     for (let beer of beers) {
       if(beers_drank.findIndex(x => x.id == beer.id) == -1){
@@ -125,7 +123,6 @@ export class PassportComponent implements OnInit {
   onTabChange(index) {
     this.searchBeerParten = '';
     this.tab = index;
-    console.log('index', index);
     switch(this.tab){
       case 0: {
         this._beers = this.beers;

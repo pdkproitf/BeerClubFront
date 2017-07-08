@@ -13,14 +13,12 @@ export class MenubarComponent implements OnInit, OnChanges {
 
   user: User;
   msgs: Message[] = [];
-  classActive: string[] = ['', '', '', '', ''];
   currentState: number = 0;
 
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.getUser();
-    this.classActive[this.currentState] = 'active';
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}){
@@ -61,14 +59,5 @@ export class MenubarComponent implements OnInit, OnChanges {
             this.msgs.push({severity: 'error', summary: 'Error', detail: content});
         }
     );
-  }
-
-  setActiveMenu(a) {
-    let len = this.classActive.length;
-    for (let i = 0; i < len; i++) {
-        this.classActive[i] = '';
-    }
-    this.classActive[a] = 'active';
-    this.currentState = a;
   }
 }

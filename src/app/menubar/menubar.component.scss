@@ -1,4 +1,6 @@
-body {margin:0;}
+body {
+  margin:0;
+}
 
 .topnav {
   margin-bottom: 2em;
@@ -14,6 +16,7 @@ body {margin:0;}
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  font-family: -webkit-body;
 }
 
 .topnav a:hover {
@@ -24,10 +27,10 @@ body {margin:0;}
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
+    padding: 11px 5px 8px 5px;
 }
 .logo{
   > a{
-    padding: 2px 2px 7px 2px;
     img{
       width: 80px;
     }
