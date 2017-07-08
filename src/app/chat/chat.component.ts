@@ -31,13 +31,17 @@ export class ChatComponent implements OnInit {
       '&client=' + this.current_user.client, 'ConversationChannel');
     this.broadcaster.on<string>('ConversationChannel').subscribe(
       message => {
-        if(message['message'] == 'list_user'){
-          this.users = message['data'];
-        }else if(message['message'] == 'broadcast'){
-          this.message = message['data'];
-          this.count = this.count + 1;
-          console.log('get boastcast', message);
+        switch(message['message']){
+          case 'list_user':{
+            this.users = message['data'];
+            break;
+          }
+          case 'broadcast':{
+            this.processServerBroadcast(message['data'])
+            break;
+          }
         }
+        console.log('get boastcast', message);
       }
     );
   }
@@ -62,6 +66,16 @@ export class ChatComponent implements OnInit {
           alert(JSON.parse(error['_body']).error);
         }
       )
+    }
+  }
+
+  processServerBroadcast(message: ChatMessage){
+    var index = this.conversations.findIndex(x => x.id == message.conversation_id)
+    if(index != -1){
+      this.message = message;
+      this.count = this.count + 1;
+    }else{
+      this.createConversation(message.user.id)
     }
   }
 }

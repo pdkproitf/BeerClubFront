@@ -10,7 +10,7 @@
         <ul>
           <li *ngFor="let message of messages">
             <div *ngIf="message" class="row">
-              <div [class]="current_user.id == message.sender_id ? 'message-sent' : 'message-received'">
+              <div [class]="current_user.id == message.user.id ? 'message-sent' : 'message-received'">
                 {{message.body}}
               </div>
             </div>

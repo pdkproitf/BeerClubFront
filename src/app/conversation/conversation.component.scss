@@ -11,8 +11,10 @@ ul {
   overflow-x: hidden;
 }
 
-
-.message-sent {
+.row{
+  display: flow-root;
+}
+.message-received {
   position: relative;
   background-color: #D9EDF7;
   border-color: #BCE8F1;
@@ -22,7 +24,7 @@ ul {
 }
 
 
-.message-received {
+.message-sent {
   background-color: #F1F0F0;
   border-color: #EEEEEE;
   margin: 5px 20px;

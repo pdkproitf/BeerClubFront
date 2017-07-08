@@ -21,8 +21,8 @@ export class ConversationComponent implements OnInit {
   @Input()
   set conversation(data: Conversation){
     this._conversation = data;
-    console.log('conversation', data)
     this.messages = data.messages || [];
+    console.log('conversation', data)
   }
 
   @Input()
@@ -65,7 +65,7 @@ export class ConversationComponent implements OnInit {
     var msPost = new MessagePost();
     msPost.conversation_id = this._conversation.id;
     msPost.message = {
-      user_id: this._conversation.sender.id,
+      user_id: this.current_user.id,
       body: text
     }
     return msPost;
