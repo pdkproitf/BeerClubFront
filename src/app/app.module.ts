@@ -3,6 +3,7 @@ import { HttpModule }       from '@angular/http';
 import { FormsModule }      from '@angular/forms';
 import { RouterOutlet,
          RouterModule }     from "@angular/router";
+import { NgbModule }        from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule }    from '@angular/platform-browser';
 import { AppComponent }     from './app.component';
 import { SignInComponent }  from './sign-in/sign-in.component';
@@ -16,28 +17,25 @@ import { NotLoggedIn }            from './services/not-logged-in';
 import { UserService }            from './services/user-service';
 import { BeerService }            from './services/beer-service';
 import { AuthenLoggedIn }         from './services/authen-logged-in';
-import { AuthenAdmin }         from './services/authen-admin';
+import { AuthenAdmin }            from './services/authen-admin';
 import { CategoryService }        from './services/category-service';
 import { PassportService }        from './services/passport-service';
 import { ConversationService }    from './services/conversation-service';
 import { CategoryComponent }      from './category/category.component';
-import { MaketingPageComponent }  from './maketing-page/maketing-page.component';
-import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
-import { MenubarComponent } from './menubar/menubar.component';
-import { BeerComponent } from './beer/beer.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { PassportsComponent } from './passports/passports.component';
-import { PassportComponent } from './passport/passport.component';
-import { ChatComponent } from './chat/chat.component';
-import { Ng2Cable, Broadcaster } from 'ng2-cable';
-import { ConversationComponent } from './conversation/conversation.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BeerComponent }          from './beer/beer.component';
+import { MenubarComponent }       from './menubar/menubar.component';
+import { SignUpComponent }        from './sign-up/sign-up.component';
+import { ChatComponent }          from './chat/chat.component';
+import { PassportComponent }      from './passport/passport.component';
+import { PassportsComponent }     from './passports/passports.component';
+import { Ng2Cable, Broadcaster }  from 'ng2-cable';
+import { ConversationComponent }  from './conversation/conversation.component';
+import { BrowserAnimationsModule }from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    MaketingPageComponent,
     CategoryComponent,
     MenubarComponent,
     BeerComponent,

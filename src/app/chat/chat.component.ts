@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit {
   private current_user: User;
   // using to active message sennd to conversation
   private count: number = 0;
-  private message: ChatMessage;
+  private url = 'ws://localhost:3000/cable/';
 
   constructor(private ng2cable: Ng2Cable, private broadcaster: Broadcaster, private conversationService: ConversationService) {
     this.getUser();
@@ -27,17 +27,21 @@ export class ChatComponent implements OnInit {
   }
 
   createConsumer(){
-    this.ng2cable.subscribe('ws://localhost:3000/cable/?token=' + this.current_user.token  +
+    this.ng2cable.subscribe(this.url + '?token=' + this.current_user.token  +
       '&client=' + this.current_user.client, 'ConversationChannel');
     this.broadcaster.on<string>('ConversationChannel').subscribe(
       message => {
-        if(message['message'] == 'list_user'){
-          this.users = message['data'];
-        }else if(message['message'] == 'broadcast'){
-          this.message = message['data'];
-          this.count = this.count + 1;
-          console.log('get boastcast', message);
+        switch(message['message']){
+          case 'list_user':{
+            this.users = message['data'];
+            break;
+          }
+          case 'broadcast':{
+            this.processServerBroadcast(message['data'])
+            break;
+          }
         }
+        console.log('get boastcast', message);
       }
     );
   }
@@ -63,5 +67,25 @@ export class ChatComponent implements OnInit {
         }
       )
     }
+  }
+
+  processServerBroadcast(message: ChatMessage){
+    var index = this.conversations.findIndex(x => x.id == message.conversation_id)
+    if(index != -1){
+      for(let conversation of this.conversations){
+        if(conversation.id == message.conversation_id){
+          conversation.messages.push(message);
+        }
+      }
+    }else{
+      this.createConversation(message.user.id)
+    }
+    this.count = this.count + 1;
+    console.log(this.count)
+  }
+
+  deleteConversation(id: number){
+    var index = this.conversations.findIndex(x => x.id == id);
+    this.conversations.splice(index, 1);
   }
 }
