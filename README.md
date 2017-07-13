@@ -1,5 +1,5 @@
 # [BeerClubFront](https://beerclub-angular2.herokuapp.com/)  
-server: `https://beerclub-angular2.herokuapp.com/`
+## [demo](https://beerclub-angular2.herokuapp.com/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3.
 
