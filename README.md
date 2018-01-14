@@ -1,5 +1,6 @@
 # [BeerClubFront](https://beerclub-angular2.herokuapp.com/)  
-## [demo](https://beerclub-angular2.herokuapp.com/)
+## [Link To demo](https://beerclub-angular2.herokuapp.com/)
+## [Docs](https://github.com/pdkproitf/BeerClub)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3.
 
